@@ -8,22 +8,24 @@ import Pagination from "../modules/Pagination";
 function HomePages() {
     const[coins , setCoins] = useState([]) ;
     const [isLoading , setIsLoading] = useState(true) ;
+    const [page, setPage]= useState(1)
 
 useEffect(() => {
      
    const getData = async () => {
-    const res = await fetch(getCoinList());
+    setIsLoading(true);
+    const res = await fetch(getCoinList(page));
     const json = await res.json();
     setCoins(json);
     setIsLoading(false) ;
    };
    getData();
 
-},[]) ;
+},[page]) ;
 
      return (
     <div>
-      <Pagination />
+      <Pagination  page={page} setPage={setPage}/>
       <TableCoin coins={coins}  isLoading={isLoading}/>
       </div>
   )
