@@ -9,4 +9,7 @@ const getCoinList = (page, currency) => {
 };
 
 
-export {getCoinList}
+const searchCoin = (query) => `${BASE_URL}/search?query=${query}&x_cg_demo_api_key=${API_KEY}`
+
+
+export {getCoinList, searchCoin}
