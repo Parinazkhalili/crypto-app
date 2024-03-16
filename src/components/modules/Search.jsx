@@ -9,6 +9,8 @@ function Search({currency, setCurrency}) {
 
     useEffect(() => {
         const controller = new AbortController();
+
+        setCoins([]);
         if(!text) return;
 
     
@@ -38,12 +40,20 @@ function Search({currency, setCurrency}) {
     }, [text])
   return (
     <div>
-        <input type="text" placeholder='Search' value={text} onChange={e => setText(e.target.value)} />
+        < input type="text" placeholder='Search' value={text} onChange={e => setText(e.target.value)} />
         <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
             <option value="usd">USD</option>
             <option value="eur">EUR</option>
             <option value="jpy">JPY</option>
         </select>
+          <div>
+            <ul>
+                {coins.map(coin => <li key={coin.id}>
+                    <img  src={coin.thumb} alt={coin.name}/>
+                    <p>{coin.name}</p>
+                </li>)}
+            </ul>
+          </div>
     </div>
   )
 }
